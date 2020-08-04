@@ -1,0 +1,21 @@
+h1, p {
+    color: #484848;
+    font-weight: 700;
+    padding: 20px;
+    margin: 0;
+}
+.app {
+    margin: 40px auto 10px;
+    display: flex;
+    flex-direction: column;
+    width: 414px;
+    border: 2px solid #484848;
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,0.09);
+    border-radius: 8px;
+    background-color: #f7f7f7;
+    align-items: center;
+}
+.small-text {
+    font-size: 0.8rem;
+    padding: 10px 20px;
+}
