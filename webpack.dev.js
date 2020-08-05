@@ -1,23 +1,13 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { merge } = require('webpack-merge');
 
-const mode = process.env.NODE_ENV;
-const isProduction = mode === 'production';
+const common = require('./webpack.common.js');
 
-const src = `${__dirname}/src`;
-
-module.exports = {
-  mode: mode,
-  entry: [
-    `${src}/index.jsx`,
-  ],
-  output: {
-    filename: 'index.js',
-    path: `${__dirname}/dist`,
-  },
-  devtool: !isProduction ? 'source-map' : 'none',
+module.exports = merge(common, {
+  mode: 'development',
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -34,7 +24,6 @@ module.exports = {
         use: [
           {
             loader: 'html-loader',
-            options: { minimize: isProduction },
           },
         ],
       },
@@ -61,40 +50,18 @@ module.exports = {
       },
     ],
   },
-  resolve: {
-    extensions: ['*', '.js', '.jsx'],
-  },
   plugins: [
     new HtmlWebPackPlugin({
-      template: `${src}/index.html`,
+      template: `${__dirname}/src/index.html`,
       filename: `./index.html`,
     }),
     new MiniCssExtractPlugin({
-      filename: isProduction ? '[name].css' : '[name].[hash].css',
-      chunkFilename: isProduction ? '[id].css' : '[id].[hash].css',
+      filename: '[name].[hash].css',
+      chunkFilename: '[id].[hash].css',
     }),
     new CleanWebpackPlugin(),
   ],
-  optimization: {
-    minimize: true,
-    minimizer: [
-      new UglifyJsPlugin({
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        sourceMap: true,
-        uglifyOptions: {
-          compress: {},
-          mangle: true,
-          output: {
-            comments: false,
-          },
-        },
-      }),
-    ],
-  },
   devServer: {
-    port: 8080,
-    open: true,
+    port: 8080
   },
-};
-
+});

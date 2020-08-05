@@ -40,13 +40,14 @@
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.1.1"
   },
   "scripts": {
     "test": "jest",
-    "start": "cross-env NODE_ENV=development webpack-dev-server",
-    "build:prod": "cross-env NODE_ENV=production webpack",
-    "build:dev": "cross-env NODE_ENV=development webpack"
+    "start": "webpack-dev-server --open --config webpack.dev",
+    "build:prod": "webpack --config webpack.prod",
+    "build:dev": "webpack --config webpack.dev"
   },
   "description": "Hello react\r Task 2 - webpack",
   "repository": {
