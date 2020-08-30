@@ -1,0 +1,44 @@
+body {
+    margin: unset;
+    box-sizing: content-box;
+    font-family: 'Arial', sans-serif;
+}
+
+.app {
+    background-color: #232323;
+    color: #ffffff;
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.wrap-large {
+    width: 1080px;
+    margin: 0 auto;
+}
+.wrap-medium {
+    width: 960px;
+    margin: 0 auto;
+}
+.wrap-small {
+
+}
+.wrap-centered {
+    display: flex;
+    justify-content: center;
+}
+
+.d-flex-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.d-flex-between-aligned {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-open {
+    overflow: hidden;
+}

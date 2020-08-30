@@ -1,0 +1,94 @@
+.movies-card-list-item, .mcli--img {
+    width: 320px;
+}
+
+.mcli--img {
+    height: 460px;
+}
+
+.mcli--img {
+    margin-bottom: 12px;
+    display: inline-block;
+    background-image: url(https://image.shutterstock.com/z/stock-vector-no-user-profile-picture-hand-drawn-99335579.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.movies-card-list-item {
+    position: relative;
+    color: #666;
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+
+.movies-card-list-item:hover {
+    box-shadow: 0px 0px 10px 2px rgba(204,204,204,0.5);
+}
+
+.movies-card-list-item:hover .dots-icon,
+.movies-card-list-item:focus .dots-icon {
+    display: inline-block;
+}
+
+.mcli--title-and-year-box {
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.mcli---year {
+    color: #666;
+    font-size: 14px;
+    border: 1px solid #666;
+    border-radius: 4px;
+    padding: 5px 14px;
+}
+
+.mcli--genres {
+    font-size: 14px;
+}
+
+.dots-icon {
+    display: none;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    background-color: aliceblue;
+    border: unset;
+    cursor: pointer;
+}
+
+.dots-icon:focus {
+    cursor: pointer;
+}
+
+.dots-icon:focus {
+    outline: unset;
+}
+
+.dots-icon-dot,
+.dots-icon:before,
+.dots-icon:after {
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    height: 4px;
+    width: 4px;
+    border-radius: 50%;
+    background-color: #666;
+}
+
+.dots-icon:before {
+    content: "";
+    top: 10px;
+}
+
+.dots-icon:after {
+    content: "";
+    top: 22px;
+}

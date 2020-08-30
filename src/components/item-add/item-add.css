@@ -1,0 +1,85 @@
+.item-add {
+    height: 45px;
+    width: 180px;
+    color: #f65261;
+    background-color: #555555;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    border: unset;
+}
+
+.show-modal {
+    display: flex;
+    position: fixed;
+    overflow: auto;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 2;
+    opacity: 1;
+    transition: opacity 200ms ease-in;
+    margin: 0;
+    padding: 0;
+}
+
+.show-modal-content {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 520px;
+    padding: 90px 80px;
+    margin: auto;
+    background-color: #232323;
+    border-radius: 4px;
+    border: 1px solid white;
+}
+
+.show-modal-content-title {
+    font-size: 42px;
+    font-weight: 300;
+    margin-bottom: 50px;
+}
+
+.item-add-form input {
+    box-sizing: content-box;
+    display: inline-block;
+    width: 100%;
+    height: 56px;
+    border: unset;
+    border-radius: 4px;
+    background-color: #424242;
+    font-size: 24px;
+    padding-left: 24px;
+    margin-top: 10px;
+    color: #ffffff;
+}
+
+.item-add-form input::placeholder {
+    color: #666666;
+    font-size: 24px;
+}
+
+label {
+    display: block;
+    color: #f65261;
+    margin-bottom: 20px;
+}
+
+::-webkit-datetime-edit { padding: 0; }
+::-webkit-datetime-edit-text { font-size:24px; }
+::-webkit-datetime-edit-month-field { color: #FFFFFF; font-size:24px; }
+::-webkit-datetime-edit-day-field { color: #FFFFFF; }
+::-webkit-datetime-edit-year-field { color: #FFFFFF; }
+::-webkit-inner-spin-button { display: inline; }
+::-webkit-calendar-picker-indicator { margin-right: 24px; filter: invert(1);}
+
+option:hover {
+    background-color: #f65261;
+}
