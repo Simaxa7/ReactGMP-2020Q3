@@ -1,0 +1,18 @@
+.main {
+    margin-top: 10px;
+    padding-top: 20px;
+    border-top: 2px solid #484848;
+    flex-grow: 100000;
+    background-color: #232323;
+}
+
+.no-movie {
+    text-align: center;
+    margin-top: 150px;
+    font-size: 40px;
+}
+
+.decoration-line-sorting {
+    border-bottom: 1px solid whitesmoke;
+    padding-bottom: 20px;
+}

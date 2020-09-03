@@ -1,0 +1,34 @@
+.dots-dropdown-menu {
+    width: 190px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background-color: #232323;
+    border-radius: 4px;
+    border: 1px solid #ffffff;
+    padding: 26px 0 8px;
+    color: white;
+}
+
+.dots-dropdown-menu-edit,
+.dots-dropdown-menu-delete {
+    outline: unset;
+}
+
+.dots-dropdown-menu-edit,
+.dots-dropdown-menu-delete {
+    padding: 4px 10px;
+    background-color: #232323;
+    color: #ffffff;
+    font-size: 16px;
+    border: unset;
+    width: 100%;
+}
+
+.dots-dropdown-menu-edit:hover,
+.dots-dropdown-menu-edit:focus,
+.dots-dropdown-menu-delete:hover,
+.dots-dropdown-menu-delete:focus {
+    background-color: #f65261;
+    cursor: pointer;
+}

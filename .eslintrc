@@ -1,6 +1,5 @@
 {
   "plugins": [
-    "react",
     "react"
   ],
   "parser": "babel-eslint",
@@ -25,7 +24,9 @@
     "plugin:react-hooks/recommended"
   ],
   "rules": {
-
+    "react/destructuring-assignment": "off",
+    "react/state-in-constructor": "off",
+    "no-nested-ternary": "off",
     "react/jsx-indent" : ["error", 2],
     "max-depth": ["error", 4],
     "semi": [ "error", "always" ],
@@ -34,7 +35,7 @@
     "max-len": ["error", { "code": 80 }],
     "no-multi-spaces": "error",
     "no-console": [
-      "error",
+      "off",
       {
         "allow": [
           "info",

@@ -1,0 +1,98 @@
+.button-close {
+    position: absolute;
+    font-size: 0;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.button-close:hover:before,
+.button-close:hover:after {
+    background-color: #f65261;
+}
+
+.button-close:before,
+.button-close:after {
+    content: " ";
+    position: absolute;
+    width: 2px;
+    color: #ffffff;
+    background-color: #ffffff;
+}
+
+.button-close:before {
+    transform: rotate(45deg);
+}
+
+.button-close:after {
+    transform: rotate(-45deg);
+}
+
+.button-close:focus,
+.button-action:focus {
+    outline: unset;
+}
+
+.button-close-small {
+    top: 10px;
+    right: 10px;
+    height: 14px;
+    width: 14px;
+}
+
+.button-close-small:before,
+.button-close-small:after {
+    left: 6px;
+    top: 0;
+    height: 14px;
+}
+
+.button-close-default {
+    top: 20px;
+    right: 20px;
+    height: 22px;
+    width: 22px;
+}
+
+.button-close-default:before,
+.button-close-default:after {
+    left: 10px;
+    top: -4px;
+    height: 28px;
+}
+
+.button-action {
+    font-size: 22px;
+    margin-left: auto;
+    display: block;
+    padding: 14px 36px;
+    border-radius: 4px;
+    cursor: pointer;
+    border-color: #f65261;
+}
+
+.button-action-default {
+    color: #ffffff;
+    border: 2px solid #f65261;
+    background-color: #f65261;
+}
+
+.button-action-revert {
+    background-color: transparent;
+    border-color: #f65261;
+    color: #f65261;
+}
+
+.button-action:hover {
+    background-color: #424242;
+}
+
+.form-double-buttons {
+    text-align: end;
+    width: calc(100% + 24px);
+}
+
+.form-double-buttons .button-action{
+    display: inline;
+    margin-left: 20px;
+}
