@@ -1,0 +1,6 @@
+{
+  "buttonCloseSmall": "button-close-small button-close",
+  "buttonCloseDefault": "button-close-default button-close",
+  "buttonActionDefault": "button-action-default button-action",
+  "buttonActionRevert": "button-action-revert button-action"
+}

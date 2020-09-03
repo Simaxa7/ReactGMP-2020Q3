@@ -13,10 +13,7 @@ class FilmGenre extends Component {
 
   onClickToggleActive(doActiveItem) {
     const newActiveItem = doActiveItem;
-    this.setState(() => {
-      const newState = { activeItem: newActiveItem };
-      return { ...newState };
-    });
+    this.setState(() => ({ activeItem: newActiveItem }));
   }
 
   render() {
@@ -27,35 +24,35 @@ class FilmGenre extends Component {
       <div className="film-genre">
         <button
           type="button"
-          className={`film-genre-item  ${activeItem === 1 ? 'active' : null} `}
+          className={`film-genre-item ${activeItem === 1 ? 'active' : ''}`}
           onClick={() => this.onClickToggleActive(1)}
         >
           ALL
         </button>
         <button
           type="button"
-          className={`film-genre-item  ${activeItem === 2 ? 'active' : null} `}
+          className={`film-genre-item ${activeItem === 2 ? 'active' : ''}`}
           onClick={() => this.onClickToggleActive(2)}
         >
-          DOCUMEN
+          DOCUMENTARY
         </button>
         <button
           type="button"
-          className={`film-genre-item  ${activeItem === 3 ? 'active' : null} `}
+          className={`film-genre-item ${activeItem === 3 ? 'active' : ''}`}
           onClick={() => this.onClickToggleActive(3)}
         >
           COMEDY
         </button>
         <button
           type="button"
-          className={`film-genre-item  ${activeItem === 4 ? 'active' : null} `}
+          className={`film-genre-item ${activeItem === 4 ? 'active' : ''}`}
           onClick={() => this.onClickToggleActive(4)}
         >
           HORROR
         </button>
         <button
           type="button"
-          className={`film-genre-item  ${activeItem === 5 ? 'active' : null} `}
+          className={`film-genre-item ${activeItem === 5 ? 'active' : ''}`}
           onClick={() => this.onClickToggleActive(5)}
         >
           CRIME

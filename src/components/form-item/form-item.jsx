@@ -15,18 +15,13 @@ class FormItem extends Component {
     this.onClickSelectToggle = this.onClickSelectToggle.bind(this);
   }
 
-  onClickSubmit() {
-    this.setState((state) => {
-      const newState = { ...state };
-      return { ...newState };
-    });
+  onClickSubmit(e) {
+    e.preventDefault();
+    this.setState((state) => ({ ...state }));
   }
 
   onClickReset() {
-    this.setState((state) => {
-      const newState = { ...state };
-      return { ...newState };
-    });
+    this.setState((state) => ({ ...state }));
   }
 
   onClickSelectToggle() {
@@ -55,7 +50,6 @@ class FormItem extends Component {
     } = options;
 
     const { showSelectOption } = this.state;
-
     return (
       <form className="item-add-form">
         {type === 'editItem'

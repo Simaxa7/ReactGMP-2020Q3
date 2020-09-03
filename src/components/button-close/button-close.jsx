@@ -1,16 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import buttonType from './button-config.json';
 import './button-close.css';
 
 function ButtonClose(props) {
   const { type, text, onClickFunc } = props.options;
-  const buttonType = {
-    buttonCloseSmall: 'button-close-small button-close',
-    buttonCloseDefault: 'button-close-default button-close',
-    buttonActionDefault: 'button-action-default button-action',
-    buttonActionRevert: 'button-action-revert button-action',
-  };
 
   return (
     <button
