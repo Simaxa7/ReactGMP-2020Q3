@@ -1,74 +1,59 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import './item-add.css';
 import ButtonClose from '../button-close';
 import FormItem from '../form-item';
 
-class ItemAdd extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isShowModal: false,
-    };
-    this.onShowModal = this.onShowModal.bind(this);
-    this.onHideModal = this.onHideModal.bind(this);
-  }
+const ItemAdd = () => {
+  const [modalAdd, setModalAdd] = useState(false);
+  const showModalAdd = () => setModalAdd(true);
+  const hideModalAdd = () => setModalAdd(false);
 
-  onShowModal() {
+  function onShowModal() {
     document.body.classList.add('modal-open');
-    this.setState({
-      isShowModal: true,
-    });
+    showModalAdd();
   }
 
-  onHideModal() {
+  function onHideModal() {
     document.body.classList.remove('modal-open');
-    this.setState({
-      isShowModal: false,
-    });
+    hideModalAdd();
   }
 
-  render() {
-    const {
-      isShowModal,
-    } = this.state;
-
-    return (
-      <>
-        { isShowModal
-          ? (
-            <div className="show-modal">
-              <div className="show-modal-content">
-                <div className="show-modal-content-title">
-                  ADD MOVIE
-                </div>
-                <FormItem
-                  type="addItem"
-                />
-                <ButtonClose
-                  options={
-                    {
-                      type: 'buttonCloseDefault',
-                      text: '',
-                      onClickFunc: this.onHideModal,
-                    }
-                  }
-                />
+  return (
+    <>
+      { modalAdd
+        ? (
+          <div className="show-modal">
+            <div className="show-modal-content">
+              <div className="show-modal-content-title">
+                ADD MOVIE
               </div>
+              <FormItem
+                type="addItem"
+              />
+              <ButtonClose
+                options={
+                  {
+                    type: 'buttonCloseDefault',
+                    text: '',
+                    onClickFunc: onHideModal,
+                  }
+                }
+              />
             </div>
-          )
-          : (
-            <button
-              className="item-add"
-              type="button"
-              onClick={this.onShowModal}
-            >
-              +ADD MOVIE
-            </button>
-          )}
-      </>
-    );
-  }
-}
+          </div>
+        )
+        : (
+          <button
+            className="item-add"
+            type="button"
+            onClick={onShowModal}
+          >
+            +ADD MOVIE
+          </button>
+        )}
+    </>
+  );
+};
 
 export default ItemAdd;

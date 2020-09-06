@@ -1,0 +1,51 @@
+.movie-details {
+    display: flex;
+}
+.movie-details--img {
+    margin-bottom: 12px;
+    display: inline-block;
+    background-image: url(https://image.shutterstock.com/z/stock-vector-no-user-profile-picture-hand-drawn-99335579.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 460px;
+    width: 320px;
+    margin-right: 70px;
+}
+
+.movie-details--title {
+    font-size: 48px;
+    line-height: 70px;
+    margin-bottom: 20px;
+}
+
+.movie-details--rating {
+    font-size: 24px;
+    color: forestgreen;
+    border-radius: 50%;
+    border: 1px solid #ffffff;
+    width: 70px;
+    height: 70px;
+    margin-left: 20px;
+}
+
+.movie-details--osckar {
+    margin-bottom: 40px;
+    color: #555555;
+    font-size: 24px;
+    line-height: 30px;
+}
+
+.movie-details--time,
+.movie-details--year {
+    margin-right: 40px;
+    color: #f65261;
+    font-size: 28px;
+    margin-bottom: 40px;
+}
+
+.movie-details--description {
+    color: #555555;
+    font-size: 24px;
+    line-height: 30px;
+}

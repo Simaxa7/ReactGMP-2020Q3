@@ -11,6 +11,7 @@ function Main(props) {
     count,
     moviesData,
     onDeleteItem,
+    onShowMovieDetails,
   } = props;
 
   return (
@@ -34,6 +35,7 @@ function Main(props) {
               <MoviesCardList
                 moviesData={moviesData}
                 onDeleteItem={onDeleteItem}
+                onShowMovieDetails={onShowMovieDetails}
               />
             </>
           )}
@@ -46,6 +48,7 @@ Main.propTypes = {
   count: PropTypes.number.isRequired,
   moviesData: PropTypes.instanceOf(Array).isRequired,
   onDeleteItem: PropTypes.instanceOf(Function).isRequired,
+  onShowMovieDetails: PropTypes.instanceOf(Function).isRequired,
 };
 
 export default Main;
