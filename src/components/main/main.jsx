@@ -6,11 +6,12 @@ import SelectGenre from '../select-genre';
 
 import './main.css';
 
-function Main(props) {
+const Main = (props) => {
   const {
     count,
     moviesData,
     onDeleteItem,
+    onShowMovieDetails,
   } = props;
 
   return (
@@ -34,18 +35,20 @@ function Main(props) {
               <MoviesCardList
                 moviesData={moviesData}
                 onDeleteItem={onDeleteItem}
+                onShowMovieDetails={onShowMovieDetails}
               />
             </>
           )}
       </div>
     </div>
   );
-}
+};
 
 Main.propTypes = {
   count: PropTypes.number.isRequired,
-  moviesData: PropTypes.instanceOf(Array).isRequired,
+  moviesData: PropTypes.arrayOf(Array).isRequired,
   onDeleteItem: PropTypes.instanceOf(Function).isRequired,
+  onShowMovieDetails: PropTypes.instanceOf(Function).isRequired,
 };
 
 export default Main;

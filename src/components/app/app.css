@@ -28,6 +28,16 @@ body {
     justify-content: center;
 }
 
+.flex-all-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.d-flex {
+    display: flex;
+}
+
 .d-flex-between {
     display: flex;
     justify-content: space-between;

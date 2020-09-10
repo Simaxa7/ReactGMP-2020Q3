@@ -16,3 +16,34 @@
     font-size: 48px;
     font-weight: 300;
 }
+
+.magnifier {
+    height: 50px;
+    width: 50px;
+    position: relative;
+    cursor: pointer;
+    font-size: 0;
+}
+
+.magnifier::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+    border: 4px solid #f65261;
+    position: absolute;
+    border-radius: 50%;
+    right: 10px;
+    bottom: 20px;
+}
+.magnifier::before {
+    content: "";
+    width: 16px;
+    height: 4px;
+    position: absolute;
+    right: 20px;
+    bottom: 18px;
+    background: #f65261;
+    transform: rotate(-45deg);
+}

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './button-action.css';
 
-function ButtonAction(props) {
+const ButtonAction = (props) => {
   const { type, text, onClickFunc } = props.options;
 
   return (
@@ -15,7 +15,7 @@ function ButtonAction(props) {
       {text}
     </button>
   );
-}
+};
 
 ButtonAction.propTypes = {
   options: PropTypes.shape({

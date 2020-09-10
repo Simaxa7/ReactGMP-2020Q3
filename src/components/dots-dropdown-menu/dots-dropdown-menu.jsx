@@ -6,7 +6,7 @@ import DotsDropdownDelete from '../dots-dropdown-delete';
 import DotsDropdownEdit from '../dots-dropdown-edit';
 import ButtonClose from '../button-close';
 
-function DotsDropdownMenu(props) {
+const DotsDropdownMenu = (props) => {
   const {
     isShowModalDeleteOpen,
     isShowModalEditOpen,
@@ -46,7 +46,7 @@ function DotsDropdownMenu(props) {
       />
     </div>
   );
-}
+};
 
 DotsDropdownMenu.propTypes = {
   isShowModalDeleteOpen: PropTypes.bool.isRequired,

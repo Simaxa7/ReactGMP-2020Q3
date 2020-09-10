@@ -1,40 +1,40 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import './search-panel.css';
 
-class SearchPanel extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      label: '',
-    };
-  }
+const SearchPanel = (props) => {
+  const {
+    onSetSearchValue,
+    searchValue,
+  } = props;
 
-  onLabelChange = (e) => {
-    this.setState({
-      label: e.target.value,
-    });
+  const handleSubmit = (e) => {
+    console.log('handleSubmit');
+    e.preventDefault();
   };
 
-  render() {
-    const { label } = this.state;
-    return (
-      <form className="search-panel-group">
-        <input
-          placeholder="What do you want to watch?"
-          className="search-panel-input"
-          onChange={this.onLabelChange}
-          value={label}
-        />
-        <button
-          className="search-panel-button"
-          type="submit"
-        >
-          SEARCH
-        </button>
-      </form>
-    );
-  }
-}
+  return (
+    <form className="search-panel-group" onSubmit={(e) => handleSubmit(e)}>
+      <input
+        placeholder="What do you want to watch?"
+        className="search-panel-input"
+        onChange={(e) => onSetSearchValue(e.target.value)}
+        value={searchValue}
+      />
+      <button
+        className="search-panel-button"
+        type="submit"
+      >
+        SEARCH
+      </button>
+    </form>
+  );
+};
+
+SearchPanel.propTypes = {
+  onSetSearchValue: PropTypes.instanceOf(Function).isRequired,
+  searchValue: PropTypes.string.isRequired,
+};
 
 export default SearchPanel;

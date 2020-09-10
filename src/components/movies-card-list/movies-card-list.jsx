@@ -4,8 +4,8 @@ import './movies-card-list.css';
 import PropTypes from 'prop-types';
 import MoviesCardListItem from '../movies-card-list-item';
 
-function MoviesCardList(props) {
-  const { onDeleteItem } = props;
+const MoviesCardList = (props) => {
+  const { onDeleteItem, onShowMovieDetails } = props;
 
   const moviesCardsData = props.moviesData.map((el) => {
     let newGenres = [];
@@ -33,7 +33,14 @@ function MoviesCardList(props) {
     } = el;
 
     return (
-      <div key={id} className="movies-card-list-item ">
+      <div
+        key={id}
+        className="movies-card-list-item "
+        onClick={() => onShowMovieDetails(id)}
+        onKeyDown={() => onShowMovieDetails(id)}
+        tabIndex={0}
+        role="button"
+      >
         <MoviesCardListItem
           id={id}
           title={title}
@@ -52,11 +59,12 @@ function MoviesCardList(props) {
       {elements}
     </div>
   );
-}
+};
 
 MoviesCardList.propTypes = {
-  moviesData: PropTypes.instanceOf(Array).isRequired,
+  moviesData: PropTypes.arrayOf(Array).isRequired,
   onDeleteItem: PropTypes.instanceOf(Function).isRequired,
+  onShowMovieDetails: PropTypes.instanceOf(Function).isRequired,
 };
 
 export default MoviesCardList;

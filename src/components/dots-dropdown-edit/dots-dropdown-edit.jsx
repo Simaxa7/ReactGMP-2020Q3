@@ -5,7 +5,7 @@ import './dots-dropdown-edit.css';
 import FormItem from '../form-item';
 import ButtonClose from '../button-close';
 
-function DotsDropdownEdit(props) {
+const DotsDropdownEdit = (props) => {
   const {
     isShowModalEditOpen,
     onShowModalEdit,
@@ -49,7 +49,7 @@ function DotsDropdownEdit(props) {
         )}
     </>
   );
-}
+};
 
 DotsDropdownEdit.propTypes = {
   isShowModalEditOpen: PropTypes.bool.isRequired,
