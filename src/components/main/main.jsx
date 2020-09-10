@@ -6,7 +6,7 @@ import SelectGenre from '../select-genre';
 
 import './main.css';
 
-function Main(props) {
+const Main = (props) => {
   const {
     count,
     moviesData,
@@ -42,11 +42,11 @@ function Main(props) {
       </div>
     </div>
   );
-}
+};
 
 Main.propTypes = {
   count: PropTypes.number.isRequired,
-  moviesData: PropTypes.instanceOf(Array).isRequired,
+  moviesData: PropTypes.arrayOf(Array).isRequired,
   onDeleteItem: PropTypes.instanceOf(Function).isRequired,
   onShowMovieDetails: PropTypes.instanceOf(Function).isRequired,
 };

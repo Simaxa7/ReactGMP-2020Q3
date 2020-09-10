@@ -14,8 +14,6 @@ const MovieDetails = (props) => {
     runtime,
   } = movieData;
 
-  console.log('movieData', movieData);
-
   return (
     <div className="movie-details">
       <div className="movie-details--img-block">

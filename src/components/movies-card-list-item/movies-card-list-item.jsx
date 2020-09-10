@@ -24,43 +24,43 @@ const MoviesCardListItem = (props) => {
   const showModalEdit = () => setModalEdit(true);
   const hideModalEdit = () => setModalEdit(false);
 
-  function onShowModalEdit(event) {
+  const onShowModalEdit = (event) => {
     document.body.classList.add('modal-open');
     event.stopPropagation();
     showModalEdit();
-  }
+  };
 
-  function onShowModalDelete(event) {
+  const onShowModalDelete = (event) => {
     document.body.classList.add('modal-open');
     event.stopPropagation();
     showModalDelete();
-  }
+  };
 
-  function onHideModalDelete(event) {
+  const onHideModalDelete = (event) => {
     event.stopPropagation();
     document.body.classList.remove('modal-open');
     hideModalDelete(event);
     hideDropdownMenu(event);
-  }
+  };
 
-  function onHideModal(event) {
+  const onHideModal = (event) => {
     event.stopPropagation();
     document.body.classList.remove('modal-open');
     hideDropdownMenu(event);
     hideModalDelete();
     hideModalEdit();
-  }
+  };
 
-  function onHideModalDeleteAndDel(event) {
+  const onHideModalDeleteAndDel = (event) => {
     event.stopPropagation();
     onHideModalDelete(event);
     props.onDeleteItem();
-  }
+  };
 
-  function onHideDotsDropdownMenu(event) {
+  const onHideDotsDropdownMenu = (event) => {
     event.stopPropagation();
     hideDropdownMenu(event);
-  }
+  };
 
   const {
     title,

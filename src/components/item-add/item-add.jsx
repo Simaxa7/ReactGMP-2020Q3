@@ -9,15 +9,15 @@ const ItemAdd = () => {
   const showModalAdd = () => setModalAdd(true);
   const hideModalAdd = () => setModalAdd(false);
 
-  function onShowModal() {
+  const onShowModal = () => {
     document.body.classList.add('modal-open');
     showModalAdd();
-  }
+  };
 
-  function onHideModal() {
+  const onHideModal = () => {
     document.body.classList.remove('modal-open');
     hideModalAdd();
-  }
+  };
 
   return (
     <>

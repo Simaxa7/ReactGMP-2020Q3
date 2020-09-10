@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import buttonType from './button-config.json';
 import './button-close.css';
 
-function ButtonClose(props) {
+const ButtonClose = (props) => {
   const { type, text, onClickFunc } = props.options;
 
   return (
@@ -16,7 +16,7 @@ function ButtonClose(props) {
       {text}
     </button>
   );
-}
+};
 
 ButtonClose.propTypes = {
   options: PropTypes.shape({

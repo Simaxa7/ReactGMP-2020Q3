@@ -34,7 +34,6 @@ const App = () => {
   const debouncedValue = useDebounce(searchValue, 550);
 
   useEffect(() => {
-    console.log('wait 500ms and get movie for render');
     onSetSearchMoviesData();
   }, [debouncedValue]);
 
@@ -49,19 +48,20 @@ const App = () => {
   const [movieDetails, setMovieDetails] = useState(false);
   const [movieDetailsData, setMovieDetailsData] = useState({});
 
-  function onMovieDetailsData(id) {
+  const onMovieDetailsData = (id) => {
     setMovieDetailsData(
       moviesData.filter((el) => el.id === id)[0],
     );
-  }
+  };
 
-  function onShowMovieDetails(id) {
+  const onShowMovieDetails = (id) => {
     setMovieDetails(true);
     onMovieDetailsData(id);
-  }
-  function onHideMovieDetails() {
+  };
+
+  const onHideMovieDetails = () => {
     setMovieDetails(false);
-  }
+  };
 
   const count = searchMoviesData.length;
 

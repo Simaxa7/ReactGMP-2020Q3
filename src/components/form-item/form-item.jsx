@@ -8,14 +8,14 @@ const FormItem = (props) => {
   const [showSelectOption, setShowSelectOption] = useState(false);
   const onClickSelectToggle = () => setShowSelectOption(!showSelectOption);
 
-  function onClickSubmit(e) {
+  const onClickSubmit = (e) => {
     e.preventDefault();
     console.log('onClickSubmit');
-  }
+  };
 
-  function onClickReset() {
+  const onClickReset = () => {
     console.log('onClickReset');
-  }
+  };
 
   const {
     type,

@@ -7,7 +7,7 @@ import ItemAdd from '../item-add/item-add';
 import SearchPanel from '../search-panel';
 import MovieDetails from '../movie-details';
 
-function TopOfHead(props) {
+const TopOfHead = (props) => {
   const {
     onChangeItem,
     isShowMovieDetails,
@@ -52,7 +52,7 @@ function TopOfHead(props) {
         : <MovieDetails movieData={movieData} />}
     </div>
   );
-}
+};
 
 TopOfHead.propTypes = {
   onChangeItem: PropTypes.instanceOf(Function).isRequired,

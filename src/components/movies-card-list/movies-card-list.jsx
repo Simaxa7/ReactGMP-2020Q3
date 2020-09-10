@@ -4,7 +4,7 @@ import './movies-card-list.css';
 import PropTypes from 'prop-types';
 import MoviesCardListItem from '../movies-card-list-item';
 
-function MoviesCardList(props) {
+const MoviesCardList = (props) => {
   const { onDeleteItem, onShowMovieDetails } = props;
 
   const moviesCardsData = props.moviesData.map((el) => {
@@ -59,10 +59,10 @@ function MoviesCardList(props) {
       {elements}
     </div>
   );
-}
+};
 
 MoviesCardList.propTypes = {
-  moviesData: PropTypes.instanceOf(Array).isRequired,
+  moviesData: PropTypes.arrayOf(Array).isRequired,
   onDeleteItem: PropTypes.instanceOf(Function).isRequired,
   onShowMovieDetails: PropTypes.instanceOf(Function).isRequired,
 };
