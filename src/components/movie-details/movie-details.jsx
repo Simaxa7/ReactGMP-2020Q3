@@ -1,10 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 import './movie-details.css';
 
-const MovieDetails = (props) => {
-  const { movieData } = props;
+const MovieDetails = () => {
+  const { itemActiveData } = useSelector((state) => state.qOptions);
+
   const {
     title,
     poster_path: posterPath,
@@ -12,7 +13,7 @@ const MovieDetails = (props) => {
     release_date: releaseDate,
     overview,
     runtime,
-  } = movieData;
+  } = itemActiveData;
 
   return (
     <div className="movie-details">
@@ -40,10 +41,6 @@ const MovieDetails = (props) => {
 
     </div>
   );
-};
-
-MovieDetails.propTypes = {
-  movieData: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default MovieDetails;

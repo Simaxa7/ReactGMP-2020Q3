@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import './film-genre.css';
@@ -16,7 +16,11 @@ const FilmGenre = () => {
   const dispatch = useDispatch();
   const { genreSort, genreType } = useSelector((state) => state.genre);
 
-  dispatch(setViewData(genreSort));
+  // eslint-disable-next-line
+  useEffect(() => { dispatch(filmGenreAll()); }, []);
+
+  // eslint-disable-next-line
+  useEffect(() => { dispatch(setViewData(genreSort)); }, [genreSort]);
 
   return (
     <div className="film-genre">

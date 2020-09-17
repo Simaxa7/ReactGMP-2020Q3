@@ -1,13 +1,19 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './movies-card-list.css';
 import PropTypes from 'prop-types';
 import MoviesCardListItem from '../movies-card-list-item';
+import { setItemActive } from '../../redux/actions/actionsQuerry';
 
 const MoviesCardList = (props) => {
-  const { onDeleteItem, onShowMovieDetails } = props;
+  const { onDeleteItem } = props;
 
-  const moviesCardsData = props.moviesData.map((el) => {
+  const dispatch = useDispatch();
+
+  const { currentData } = useSelector((state) => state.viewData);
+
+  const moviesCardsData = currentData.data.map((el) => {
     let newGenres = [];
     if (Array.isArray(el.genres)) {
       newGenres = [...el.genres].join(' & ') || null;
@@ -31,13 +37,13 @@ const MoviesCardList = (props) => {
     const {
       id, title, genres, posterPath, release,
     } = el;
-
+    const movieData = currentData.data.filter((elem) => elem.id === id)[0];
     return (
       <div
         key={id}
         className="movies-card-list-item "
-        onClick={() => onShowMovieDetails(id)}
-        onKeyDown={() => onShowMovieDetails(id)}
+        onClick={() => dispatch(setItemActive({ id, data: movieData }))}
+        onKeyDown={() => dispatch(setItemActive({ id, data: movieData }))}
         tabIndex={0}
         role="button"
       >
@@ -62,9 +68,7 @@ const MoviesCardList = (props) => {
 };
 
 MoviesCardList.propTypes = {
-  moviesData: PropTypes.arrayOf(Array).isRequired,
   onDeleteItem: PropTypes.instanceOf(Function).isRequired,
-  onShowMovieDetails: PropTypes.instanceOf(Function).isRequired,
 };
 
 export default MoviesCardList;

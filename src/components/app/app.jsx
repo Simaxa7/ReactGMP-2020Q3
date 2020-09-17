@@ -18,6 +18,7 @@ const App = () => {
     [],
   );
 
+  // eslint-disable-next-line
   const [searchMoviesData, setSearchMoviesData] = useState(
     moviesData,
   );
@@ -38,6 +39,7 @@ const App = () => {
 
   useEffect(() => {
     onSetSearchMoviesData();
+    // eslint-disable-next-line
   }, [debouncedValue]);
 
   const deleteItem = (id) => setMoviesData(
