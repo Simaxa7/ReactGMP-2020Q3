@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import './topOfHead.css';
@@ -6,22 +7,25 @@ import AppLogo from '../app-logo';
 import ItemAdd from '../item-add/item-add';
 import SearchPanel from '../search-panel';
 import MovieDetails from '../movie-details';
+import { setItemActive } from '../../redux/actions/actionsQuerry';
 
 const TopOfHead = (props) => {
+  const dispatch = useDispatch();
+
   const {
     onChangeItem,
-    isShowMovieDetails,
     movieData,
-    onHideMovieDetails,
     onSetSearchValue,
     searchValue,
   } = props;
+
+  const { itemActive } = useSelector((state) => state.qOptions);
 
   return (
     <div className="wrap-large topOfHead">
       <div className="d-flex-between">
         <AppLogo />
-        { !isShowMovieDetails
+        { !itemActive
           ? (
             <ItemAdd
               onChangeItem={onChangeItem}
@@ -30,8 +34,8 @@ const TopOfHead = (props) => {
           : (
             <div
               className="magnifier"
-              onClick={onHideMovieDetails}
-              onKeyDown={onHideMovieDetails}
+              onClick={() => dispatch(setItemActive({ id: '', data: [] }))}
+              onKeyDown={() => dispatch(setItemActive({ id: '', data: [] }))}
               tabIndex={0}
               role="button"
             >
@@ -39,7 +43,7 @@ const TopOfHead = (props) => {
             </div>
           )}
       </div>
-      {!isShowMovieDetails
+      {!itemActive
         ? (
           <div className="topOfHead-search">
             <h2 className="topOfHead-search-title">FIND YOUR MOVIE</h2>
@@ -56,8 +60,6 @@ const TopOfHead = (props) => {
 
 TopOfHead.propTypes = {
   onChangeItem: PropTypes.instanceOf(Function).isRequired,
-  onHideMovieDetails: PropTypes.instanceOf(Function).isRequired,
-  isShowMovieDetails: PropTypes.bool.isRequired,
   movieData: PropTypes.instanceOf(Object).isRequired,
   onSetSearchValue: PropTypes.instanceOf(Function).isRequired,
   searchValue: PropTypes.string.isRequired,
