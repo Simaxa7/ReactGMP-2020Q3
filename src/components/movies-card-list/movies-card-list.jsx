@@ -2,12 +2,12 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './movies-card-list.css';
-import PropTypes from 'prop-types';
 import MoviesCardListItem from '../movies-card-list-item';
 import { setItemActive } from '../../redux/actions/actionsQuerry';
+import { deleteItem } from '../../redux/actions/actionsGenre';
 
-const MoviesCardList = (props) => {
-  const { onDeleteItem } = props;
+const MoviesCardList = () => {
+  const { qOptions } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
@@ -53,7 +53,7 @@ const MoviesCardList = (props) => {
           genres={genres}
           posterPath={posterPath}
           release={release}
-          onDeleteItem={() => onDeleteItem(id)}
+          onDeleteItem={() => dispatch(deleteItem({ id, options: qOptions }))}
           itemData={itemData}
         />
       </div>
@@ -65,10 +65,6 @@ const MoviesCardList = (props) => {
       {elements}
     </div>
   );
-};
-
-MoviesCardList.propTypes = {
-  onDeleteItem: PropTypes.instanceOf(Function).isRequired,
 };
 
 export default MoviesCardList;

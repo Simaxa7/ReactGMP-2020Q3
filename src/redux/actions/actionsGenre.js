@@ -42,7 +42,24 @@ export const filmGenreCrime = () => async (dispatch) => {
   dispatch({ type: 'FILMGENRECRIME', payload: body });
 };
 
-export const deleteFilm = (id) => async (dispatch) => {
-  await fetch(`${baseUrl}${id}`, initDel);
-  dispatch(filmGenreCrime());
+export const deleteItem = ({ id, options }) => async (dispatch) => {
+  await fetch(`${baseUrl}/${id}`, initDel);
+  switch (options.qGenre) {
+  case 'All':
+    dispatch(filmGenreAll());
+    break;
+  case 'documentary':
+    dispatch(filmGenreDocumentary());
+    break;
+  case 'comedy':
+    dispatch(filmGenreComedy());
+    break;
+  case 'horror':
+    dispatch(filmGenreHorror());
+    break;
+  case 'crime':
+    dispatch(filmGenreCrime());
+    break;
+  default: console.log('hi2');
+  }
 };

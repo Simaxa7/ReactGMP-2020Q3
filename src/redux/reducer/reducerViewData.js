@@ -5,6 +5,8 @@ const reducerViewData = (
   switch (action.type) {
   case 'setViewData':
     return { currentData: action.payload };
+  case 'DELETEITEM':
+    return { currentData: action.payload };
   default:
     return state;
   }
