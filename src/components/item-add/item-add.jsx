@@ -47,6 +47,7 @@ const ItemAdd = () => {
               </div>
               <FormItem
                 type="addItem"
+                onHideModal={onHideModal}
               />
               <ButtonClose
                 options={

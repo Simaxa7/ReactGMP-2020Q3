@@ -63,3 +63,65 @@ export const deleteItem = ({ id, options }) => async (dispatch) => {
   default: console.log('hi2');
   }
 };
+
+export const addItem = ({ options, item }) => async (dispatch) => {
+  await fetch(
+    `${baseUrl}`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-type': 'text/plain; charset=UTF-8',
+      },
+      body: JSON.stringify(item),
+    },
+  );
+  switch (options.qGenre) {
+  case 'All':
+    dispatch(filmGenreAll());
+    break;
+  case 'documentary':
+    dispatch(filmGenreDocumentary());
+    break;
+  case 'comedy':
+    dispatch(filmGenreComedy());
+    break;
+  case 'horror':
+    dispatch(filmGenreHorror());
+    break;
+  case 'crime':
+    dispatch(filmGenreCrime());
+    break;
+  default: dispatch(filmGenreAll());
+  }
+};
+
+export const updateItem = ({ options, item }) => async (dispatch) => {
+  await fetch(
+    `${baseUrl}`,
+    {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+      body: JSON.stringify(item),
+    },
+  );
+  switch (options.qGenre) {
+  case 'All':
+    dispatch(filmGenreAll());
+    break;
+  case 'documentary':
+    dispatch(filmGenreDocumentary());
+    break;
+  case 'comedy':
+    dispatch(filmGenreComedy());
+    break;
+  case 'horror':
+    dispatch(filmGenreHorror());
+    break;
+  case 'crime':
+    dispatch(filmGenreCrime());
+    break;
+  default: dispatch(filmGenreAll());
+  }
+};

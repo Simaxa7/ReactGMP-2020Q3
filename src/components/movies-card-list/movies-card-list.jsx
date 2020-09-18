@@ -33,7 +33,6 @@ const MoviesCardList = () => {
   const viewData = [...moviesCardsData];
 
   const elements = viewData.map((el) => {
-    const itemData = { ...el };
     const {
       id, title, genres, posterPath, release,
     } = el;
@@ -54,7 +53,7 @@ const MoviesCardList = () => {
           posterPath={posterPath}
           release={release}
           onDeleteItem={() => dispatch(deleteItem({ id, options: qOptions }))}
-          itemData={itemData}
+          itemData={movieData}
         />
       </div>
     );
