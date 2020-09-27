@@ -1,34 +1,89 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem, updateItem } from '../../redux/actions/actionsGenre';
 
 import './form-item.css';
 import ButtonClose from '../button-close';
 
 const FormItem = (props) => {
+  const {
+    type,
+    onHideModal,
+    options,
+  } = props;
+
+  const {
+    id,
+    title,
+    release_date: release,
+    poster_path: movieUrlValue,
+    genres,
+    overview,
+    runtime: runtimeValue,
+  } = options;
+
+  const dispatch = useDispatch();
+  const { qOptions } = useSelector((state) => state);
+
+  const transfArrToObjGenres = {};
+  genres.forEach((el) => { transfArrToObjGenres[el] = el; });
+
   const [showSelectOption, setShowSelectOption] = useState(false);
   const onClickSelectToggle = () => setShowSelectOption(!showSelectOption);
 
+  const [formTitle, setFormTitle] = useState(title);
+  const [formRelease, setFormRelease] = useState(release);
+  const [formPosterPath, setFormPosterPath] = useState(movieUrlValue);
+  const [formGenreValue, setFormGenreValue] = useState({
+    Crime: false,
+    Documentary: false,
+    Comedy: false,
+    Horror: false,
+    ...transfArrToObjGenres,
+  });
+  const [formOverviewValue, setFormOverviewValue] = useState(overview);
+  const [formRuntimeValue, setFormRuntimeValue] = useState(runtimeValue);
+
+  const clickChecked = ({ target: { name, checked } }) => {
+    const value = checked
+      ? { [name]: name }
+      : { [name]: '' };
+
+    setFormGenreValue({ ...formGenreValue, ...value });
+  };
+
   const onClickSubmit = (e) => {
     e.preventDefault();
-    console.log('onClickSubmit');
+
+    const item = {
+      ...options,
+      title: formTitle,
+      release_date: formRelease,
+      poster_path: formPosterPath,
+      genres: Object.values(formGenreValue).filter(Boolean),
+      overview: formOverviewValue,
+      runtime: formRuntimeValue,
+    };
+
+    if (id) {
+      dispatch(updateItem({ options: qOptions, item }));
+    } else {
+      item.id = Math.floor(Math.random() * Math.floor(1000000));
+      dispatch(addItem({ options: qOptions, item }));
+    }
+    onHideModal(e);
   };
 
   const onClickReset = () => {
-    console.log('onClickReset');
+    setFormTitle(title);
+    setFormRelease(release);
+    setFormPosterPath(movieUrlValue);
+    setFormGenreValue({});
+    setFormOverviewValue(overview);
+    setFormRuntimeValue(runtimeValue);
   };
 
-  const {
-    type,
-    options,
-  } = props;
-  const {
-    id,
-    title: titleValue,
-    release: releaseDateValue,
-    posterPath: movieUrlValue,
-    overviewValue,
-    runtimeValue,
-  } = options;
   const formGenreInputBoxClassName = `form-genre-input-box ${
     showSelectOption ? '' : 'invisible'}`;
   return (
@@ -44,18 +99,19 @@ const FormItem = (props) => {
         )
         : null}
       <label htmlFor="form-title">
-        TITLE
+        <>TITLE</>
         <input
           id="form-title"
           name="form-title"
           type="text"
           placeholder="What needs to be done"
           className="item-add-form-input"
-          defaultValue={titleValue}
+          value={formTitle}
+          onChange={(e) => setFormTitle(e.target.value)}
         />
       </label>
       <label htmlFor="form-date">
-        RELEASE DATE
+        <>RELEASE DATE</>
         <input
           id="form-date"
           name="form-url"
@@ -64,18 +120,20 @@ const FormItem = (props) => {
           placeholder="Select Date"
           min="1918-01-01"
           max="2020-12-31"
-          defaultValue={releaseDateValue}
+          value={formRelease}
+          onChange={(e) => setFormRelease(e.target.value)}
         />
       </label>
       <label htmlFor="form-url">
-        MOVIE URL
+        <>MOVIE URL</>
         <input
           id="form-url"
           name="form-url"
           type="text"
           className="item-add-form-input"
           placeholder="Moview URL here"
-          defaultValue={movieUrlValue}
+          value={formPosterPath}
+          onChange={(e) => setFormPosterPath(e.target.value)}
         />
       </label>
       <div
@@ -93,28 +151,60 @@ const FormItem = (props) => {
           className={formGenreInputBoxClassName}
         >
           <label
-            htmlFor="form-genre-comedy"
-            className="form-genre-comedy-label"
-          >
-            <input
-              type="checkbox"
-              id="form-genre-comedy"
-              name="form-genre-comedy"
-              className="form-genre-comedy-input"
-            />
-            Comedy
-          </label>
-          <label
-            htmlFor="form-genre-crime"
+            htmlFor="Crime"
             className="form-genre-crime-label"
           >
             <input
+              checked={formGenreValue && formGenreValue.Crime}
               type="checkbox"
               id="form-genre-crime"
-              name="form-genre-crime"
-              className="form-genre-crime-label"
+              name="Crime"
+              className="form-genre-crime-input"
+              onChange={(e) => clickChecked(e)}
             />
             Crime
+          </label>
+          <label
+            htmlFor="Documentary"
+            className="form-genre-documentary-label"
+          >
+            <input
+              checked={formGenreValue && formGenreValue.Documentary}
+              type="checkbox"
+              id="form-genre-documentary"
+              name="Documentary"
+              className="form-genre-documentary-label"
+              onChange={(e) => clickChecked(e)}
+            />
+            Documentary
+          </label>
+          <label
+            htmlFor="Horror"
+            className="form-genre-horror-label"
+          >
+            <input
+              checked={formGenreValue && formGenreValue.Horror}
+              type="checkbox"
+              id="form-genre-horror"
+              name="Horror"
+              className="form-genre-horror-input"
+              onChange={(e) => clickChecked(e)}
+            />
+            Horror
+          </label>
+          <label
+            htmlFor="Comedy"
+            className="form-genre-comedy-label"
+          >
+            <input
+              checked={formGenreValue && formGenreValue.Comedy}
+              type="checkbox"
+              id="form-genre-comedy"
+              name="Comedy"
+              className="form-genre-comedy-label"
+              onChange={(e) => clickChecked(e)}
+            />
+            Comedy
           </label>
         </div>
       </div>
@@ -126,7 +216,8 @@ const FormItem = (props) => {
           type="text"
           className="item-add-form-input"
           placeholder="Overview here"
-          defaultValue={overviewValue}
+          value={formOverviewValue}
+          onChange={(e) => setFormOverviewValue(e.target.value)}
         />
       </label>
       <label htmlFor="form-runtime">
@@ -137,10 +228,10 @@ const FormItem = (props) => {
           type="text"
           className="item-add-form-input"
           placeholder="Runtime here"
-          defaultValue={runtimeValue}
+          value={formRuntimeValue}
+          onChange={(e) => setFormRuntimeValue(e.target.value)}
         />
       </label>
-
       <div className="form-double-buttons">
         <ButtonClose
           options={
@@ -167,14 +258,16 @@ const FormItem = (props) => {
 
 FormItem.propTypes = {
   type: PropTypes.string,
+  onHideModal: PropTypes.instanceOf(Function).isRequired,
   options: PropTypes.shape({
     text: PropTypes.string,
+    genres: PropTypes.arrayOf(Array),
     id: PropTypes.number,
     title: PropTypes.string,
-    release: PropTypes.string,
-    overviewValue: PropTypes.string,
-    runtimeValue: PropTypes.string,
-    posterPath: PropTypes.string,
+    release_date: PropTypes.string,
+    overview: PropTypes.string,
+    runtime: PropTypes.number,
+    poster_path: PropTypes.string,
   }),
 };
 
@@ -182,11 +275,11 @@ FormItem.defaultProps = {
   type: '',
   options: ({
     title: '',
-    release: '',
-    posterPath: '',
-    genreValue: 'comedy',
-    overviewValue: '',
-    runtimeValue: '',
+    release_date: '',
+    poster_path: '',
+    genres: [],
+    overview: '',
+    runtime: 0,
   }),
 };
 

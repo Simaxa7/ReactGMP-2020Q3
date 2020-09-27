@@ -4,17 +4,21 @@ import React, {
   useCallback,
 } from 'react';
 
+import { useSelector } from 'react-redux';
 import './app.css';
 import TopOfHead from '../top-of-head';
 import Main from '../main';
 import Footer from '../footer';
-import data from '../../data/movies.json';
 import useDebounce from '../../hooks/useDebounce';
 
 const App = () => {
+  const { genreSort } = useSelector((state) => state.genre);
+
   const [moviesData, setMoviesData] = useState(
-    data.filter((el, ind) => ind > 0 && ind < 14),
+    [],
   );
+
+  // eslint-disable-next-line
   const [searchMoviesData, setSearchMoviesData] = useState(
     moviesData,
   );
@@ -35,6 +39,7 @@ const App = () => {
 
   useEffect(() => {
     onSetSearchMoviesData();
+    // eslint-disable-next-line
   }, [debouncedValue]);
 
   const deleteItem = (id) => setMoviesData(
@@ -63,7 +68,7 @@ const App = () => {
     setMovieDetails(false);
   };
 
-  const count = searchMoviesData.length;
+  const count = genreSort.totalAmount || 0;
 
   return (
     <div className="app">
@@ -77,7 +82,7 @@ const App = () => {
       />
       <Main
         count={count}
-        moviesData={searchMoviesData}
+        moviesData={genreSort.data}
         onDeleteItem={deleteItem}
         onShowMovieDetails={onShowMovieDetails}
       />

@@ -25,6 +25,7 @@ const DotsDropdownEdit = (props) => {
               <FormItem
                 type="editItem"
                 options={{ ...itemData }}
+                onHideModal={onHideModal}
               />
               <ButtonClose
                 options={

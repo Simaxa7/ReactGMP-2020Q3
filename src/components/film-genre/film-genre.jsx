@@ -1,44 +1,73 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import './film-genre.css';
+import * as actionGenre from '../../redux/actions/actionsGenre';
+import setViewData from '../../redux/actions/actionsViewData';
 
 const FilmGenre = () => {
-  const [activeItem, setActiveItem] = useState(2);
+  const {
+    filmGenreAll,
+    filmGenreDocumentary,
+    filmGenreComedy,
+    filmGenreHorror,
+    filmGenreCrime,
+  } = actionGenre;
+  const dispatch = useDispatch();
+  const { genreSort, genreType } = useSelector((state) => state.genre);
+
+  // eslint-disable-next-line
+  useEffect(() => { dispatch(filmGenreAll()); }, []);
+
+  // eslint-disable-next-line
+  useEffect(() => { dispatch(setViewData(genreSort)); }, [genreSort]);
 
   return (
     <div className="film-genre">
       <button
         type="button"
-        className={`film-genre-item ${activeItem === 1 ? 'active' : ''}`}
-        onClick={() => setActiveItem(1)}
+        className={
+          `film-genre-item ${genreType === 'FILM_GENRE_ALL' ? 'active' : ''}`
+        }
+        onClick={() => dispatch(filmGenreAll())}
       >
         ALL
       </button>
       <button
         type="button"
-        className={`film-genre-item ${activeItem === 2 ? 'active' : ''}`}
-        onClick={() => setActiveItem(2)}
+        className={
+          `film-genre-item ${genreType === 'FILM_GENRE_DOCUMENTARY'
+            ? 'active'
+            : ''}`
+        }
+        onClick={() => dispatch(filmGenreDocumentary())}
       >
         DOCUMENTARY
       </button>
       <button
         type="button"
-        className={`film-genre-item ${activeItem === 3 ? 'active' : ''}`}
-        onClick={() => setActiveItem(3)}
+        className={
+          `film-genre-item ${genreType === 'FILM_GENRE_COMEDY' ? 'active' : ''}`
+        }
+        onClick={() => dispatch(filmGenreComedy())}
       >
         COMEDY
       </button>
       <button
         type="button"
-        className={`film-genre-item ${activeItem === 4 ? 'active' : ''}`}
-        onClick={() => setActiveItem(4)}
+        className={
+          `film-genre-item ${genreType === 'FILM_GENRE_HORROR' ? 'active' : ''}`
+        }
+        onClick={() => dispatch(filmGenreHorror())}
       >
         HORROR
       </button>
       <button
         type="button"
-        className={`film-genre-item ${activeItem === 5 ? 'active' : ''}`}
-        onClick={() => setActiveItem(5)}
+        className={
+          `film-genre-item ${genreType === 'FILM_GENRE_CRIME' ? 'active' : ''}`
+        }
+        onClick={() => dispatch(filmGenreCrime())}
       >
         CRIME
       </button>
