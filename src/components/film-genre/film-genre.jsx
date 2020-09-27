@@ -27,7 +27,7 @@ const FilmGenre = () => {
       <button
         type="button"
         className={
-          `film-genre-item ${genreType === 'FILMGENREALL' ? 'active' : ''}`
+          `film-genre-item ${genreType === 'FILM_GENRE_ALL' ? 'active' : ''}`
         }
         onClick={() => dispatch(filmGenreAll())}
       >
@@ -36,7 +36,7 @@ const FilmGenre = () => {
       <button
         type="button"
         className={
-          `film-genre-item ${genreType === 'FILMGENREDOCUMENTARY'
+          `film-genre-item ${genreType === 'FILM_GENRE_DOCUMENTARY'
             ? 'active'
             : ''}`
         }
@@ -47,7 +47,7 @@ const FilmGenre = () => {
       <button
         type="button"
         className={
-          `film-genre-item ${genreType === 'FILMGENRECOMEDY' ? 'active' : ''}`
+          `film-genre-item ${genreType === 'FILM_GENRE_COMEDY' ? 'active' : ''}`
         }
         onClick={() => dispatch(filmGenreComedy())}
       >
@@ -56,7 +56,7 @@ const FilmGenre = () => {
       <button
         type="button"
         className={
-          `film-genre-item ${genreType === 'FILMGENREHORROR' ? 'active' : ''}`
+          `film-genre-item ${genreType === 'FILM_GENRE_HORROR' ? 'active' : ''}`
         }
         onClick={() => dispatch(filmGenreHorror())}
       >
@@ -65,7 +65,7 @@ const FilmGenre = () => {
       <button
         type="button"
         className={
-          `film-genre-item ${genreType === 'FILMGENRECRIME' ? 'active' : ''}`
+          `film-genre-item ${genreType === 'FILM_GENRE_CRIME' ? 'active' : ''}`
         }
         onClick={() => dispatch(filmGenreCrime())}
       >

@@ -4,47 +4,46 @@ const initGet = { method: 'GET' };
 const initDel = { method: 'DELETE' };
 
 export const filmGenreAll = () => async (dispatch) => {
-  dispatch({ type: 'SETQUERRYGENRE', payload: 'All' });
+  dispatch({ type: 'SET_QUERRY_GENRE', payload: 'All' });
   const res = await fetch(`${baseUrl}`, initGet);
   const body = await res.json();
-  dispatch({ type: 'FILMGENREALL', payload: body });
+  dispatch({ type: 'FILM_GENRE_ALL', payload: body });
 };
 
 export const filmGenreDocumentary = () => async (dispatch) => {
-  dispatch({ type: 'SETQUERRYGENRE', payload: 'documentary' });
+  dispatch({ type: 'SET_QUERRY_GENRE', payload: 'documentary' });
 
   const res = await fetch(`${baseSearchUrl}documentary`, initGet);
   const body = await res.json();
-  dispatch({ type: 'FILMGENREDOCUMENTARY', payload: body });
+  dispatch({ type: 'FILM_GENRE_DOCUMENTARY', payload: body });
 };
 
 export const filmGenreComedy = () => async (dispatch) => {
-  dispatch({ type: 'SETQUERRYGENRE', payload: 'comedy' });
+  dispatch({ type: 'SET_QUERRY_GENRE', payload: 'comedy' });
 
   const res = await fetch(`${baseSearchUrl}comedy`, initGet);
   const body = await res.json();
-  dispatch({ type: 'FILMGENRECOMEDY', payload: body });
+  dispatch({ type: 'FILM_GENRE_COMEDY', payload: body });
 };
 
 export const filmGenreHorror = () => async (dispatch) => {
-  dispatch({ type: 'SETQUERRYGENRE', payload: 'horror' });
+  dispatch({ type: 'SET_QUERRY_GENRE', payload: 'horror' });
 
   const res = await fetch(`${baseSearchUrl}horror`, initGet);
   const body = await res.json();
-  dispatch({ type: 'FILMGENREHORROR', payload: body });
+  dispatch({ type: 'FILM_GENRE_HORROR', payload: body });
 };
 
 export const filmGenreCrime = () => async (dispatch) => {
-  dispatch({ type: 'SETQUERRYGENRE', payload: 'crime' });
+  dispatch({ type: 'SET_QUERRY_GENRE', payload: 'crime' });
 
   const res = await fetch(`${baseSearchUrl}crime`, initGet);
   const body = await res.json();
-  dispatch({ type: 'FILMGENRECRIME', payload: body });
+  dispatch({ type: 'FILM_GENRE_CRIME', payload: body });
 };
 
-export const deleteItem = ({ id, options }) => async (dispatch) => {
-  await fetch(`${baseUrl}/${id}`, initDel);
-  switch (options.qGenre) {
+const getFilmByGenre = (switchGenre, dispatch) => {
+  switch (switchGenre) {
   case 'All':
     dispatch(filmGenreAll());
     break;
@@ -60,8 +59,13 @@ export const deleteItem = ({ id, options }) => async (dispatch) => {
   case 'crime':
     dispatch(filmGenreCrime());
     break;
-  default: console.log('hi2');
+  default: dispatch(filmGenreAll());
   }
+};
+
+export const deleteItem = ({ id, options }) => async (dispatch) => {
+  await fetch(`${baseUrl}/${id}`, initDel);
+  getFilmByGenre(options.qGenre, dispatch);
 };
 
 export const addItem = ({ options, item }) => async (dispatch) => {
@@ -75,24 +79,7 @@ export const addItem = ({ options, item }) => async (dispatch) => {
       body: JSON.stringify(item),
     },
   );
-  switch (options.qGenre) {
-  case 'All':
-    dispatch(filmGenreAll());
-    break;
-  case 'documentary':
-    dispatch(filmGenreDocumentary());
-    break;
-  case 'comedy':
-    dispatch(filmGenreComedy());
-    break;
-  case 'horror':
-    dispatch(filmGenreHorror());
-    break;
-  case 'crime':
-    dispatch(filmGenreCrime());
-    break;
-  default: dispatch(filmGenreAll());
-  }
+  getFilmByGenre(options.qGenre, dispatch);
 };
 
 export const updateItem = ({ options, item }) => async (dispatch) => {
@@ -106,22 +93,5 @@ export const updateItem = ({ options, item }) => async (dispatch) => {
       body: JSON.stringify(item),
     },
   );
-  switch (options.qGenre) {
-  case 'All':
-    dispatch(filmGenreAll());
-    break;
-  case 'documentary':
-    dispatch(filmGenreDocumentary());
-    break;
-  case 'comedy':
-    dispatch(filmGenreComedy());
-    break;
-  case 'horror':
-    dispatch(filmGenreHorror());
-    break;
-  case 'crime':
-    dispatch(filmGenreCrime());
-    break;
-  default: dispatch(filmGenreAll());
-  }
+  getFilmByGenre(options.qGenre, dispatch);
 };

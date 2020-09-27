@@ -99,7 +99,7 @@ const FormItem = (props) => {
         )
         : null}
       <label htmlFor="form-title">
-        TITLE
+        <>TITLE</>
         <input
           id="form-title"
           name="form-title"
@@ -111,7 +111,7 @@ const FormItem = (props) => {
         />
       </label>
       <label htmlFor="form-date">
-        RELEASE DATE
+        <>RELEASE DATE</>
         <input
           id="form-date"
           name="form-url"
@@ -125,7 +125,7 @@ const FormItem = (props) => {
         />
       </label>
       <label htmlFor="form-url">
-        MOVIE URL
+        <>MOVIE URL</>
         <input
           id="form-url"
           name="form-url"
