@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem, updateItem } from '../../redux/actions/actionsGenre';
+import { Formik, Form } from 'formik';
 
+import { addItem, updateItem } from '../../redux/actions/actionsGenre';
 import './form-item.css';
 import ButtonClose from '../button-close';
 
 const FormItem = (props) => {
-  const {
-    type,
-    onHideModal,
-    options,
-  } = props;
+  const { type, onHideModal, options } = props;
 
   const {
     id,
@@ -53,28 +50,6 @@ const FormItem = (props) => {
     setFormGenreValue({ ...formGenreValue, ...value });
   };
 
-  const onClickSubmit = (e) => {
-    e.preventDefault();
-
-    const item = {
-      ...options,
-      title: formTitle,
-      release_date: formRelease,
-      poster_path: formPosterPath,
-      genres: Object.values(formGenreValue).filter(Boolean),
-      overview: formOverviewValue,
-      runtime: formRuntimeValue,
-    };
-
-    if (id) {
-      dispatch(updateItem({ options: qOptions, item }));
-    } else {
-      item.id = Math.floor(Math.random() * Math.floor(1000000));
-      dispatch(addItem({ options: qOptions, item }));
-    }
-    onHideModal(e);
-  };
-
   const onClickReset = () => {
     setFormTitle(title);
     setFormRelease(release);
@@ -87,172 +62,197 @@ const FormItem = (props) => {
   const formGenreInputBoxClassName = `form-genre-input-box ${
     showSelectOption ? '' : 'invisible'}`;
   return (
-    <form className="item-add-form">
-      {type === 'editItem'
-        ? (
-          <>
-            <div className="form-id-label">MOVIE ID</div>
-            <div className="item-add-form-id">
-              {id}
-            </div>
-          </>
-        )
-        : null}
-      <label htmlFor="form-title">
-        <>TITLE</>
-        <input
-          id="form-title"
-          name="form-title"
-          type="text"
-          placeholder="What needs to be done"
-          className="item-add-form-input"
-          value={formTitle}
-          onChange={(e) => setFormTitle(e.target.value)}
-        />
-      </label>
-      <label htmlFor="form-date">
-        <>RELEASE DATE</>
-        <input
-          id="form-date"
-          name="form-url"
-          type="date"
-          className="item-add-form-input"
-          placeholder="Select Date"
-          min="1918-01-01"
-          max="2020-12-31"
-          value={formRelease}
-          onChange={(e) => setFormRelease(e.target.value)}
-        />
-      </label>
-      <label htmlFor="form-url">
-        <>MOVIE URL</>
-        <input
-          id="form-url"
-          name="form-url"
-          type="text"
-          className="item-add-form-input"
-          placeholder="Moview URL here"
-          value={formPosterPath}
-          onChange={(e) => setFormPosterPath(e.target.value)}
-        />
-      </label>
-      <div
-        className="form-genre"
-      >
-        <div className="form-genre-label">GENRE</div>
-        <button
-          className="form-genre-label-select"
-          onClick={onClickSelectToggle}
-          type="button"
-        >
-          Select genre
-        </button>
+    <Formik
+      initialValues={options}
+      onSubmit={(e) => {
+        e.preventDefault();
+
+        const item = {
+          ...options,
+          title: formTitle,
+          release_date: formRelease,
+          poster_path: formPosterPath,
+          genres: Object.values(formGenreValue).filter(Boolean),
+          overview: formOverviewValue,
+          runtime: formRuntimeValue,
+        };
+
+        if (id) {
+          dispatch(updateItem({ options: qOptions, item }));
+        } else {
+          item.id = Math.floor(Math.random() * Math.floor(1000000));
+          dispatch(addItem({ options: qOptions, item }));
+        }
+        onHideModal(e);
+      }}
+    >
+      <Form className="item-add-form">
+        {type === 'editItem'
+          ? (
+            <>
+              <div className="form-id-label">MOVIE ID</div>
+              <div className="item-add-form-id">
+                {id}
+              </div>
+            </>
+          )
+          : null}
+        <label htmlFor="form-title">
+          <>TITLE</>
+          <input
+            id="form-title"
+            name="form-title"
+            type="text"
+            placeholder="What needs to be done"
+            className="item-add-form-input"
+            value={formTitle}
+            onChange={(e) => setFormTitle(e.target.value)}
+          />
+        </label>
+        <label htmlFor="form-date">
+          <>RELEASE DATE</>
+          <input
+            id="form-date"
+            name="form-url"
+            type="date"
+            className="item-add-form-input"
+            placeholder="Select Date"
+            min="1918-01-01"
+            max="2020-12-31"
+            value={formRelease}
+            onChange={(e) => setFormRelease(e.target.value)}
+          />
+        </label>
+        <label htmlFor="form-url">
+          <>MOVIE URL</>
+          <input
+            id="form-url"
+            name="form-url"
+            type="text"
+            className="item-add-form-input"
+            placeholder="Moview URL here"
+            value={formPosterPath}
+            onChange={(e) => setFormPosterPath(e.target.value)}
+          />
+        </label>
         <div
-          className={formGenreInputBoxClassName}
+          className="form-genre"
         >
-          <label
-            htmlFor="Crime"
-            className="form-genre-crime-label"
+          <div className="form-genre-label">GENRE</div>
+          <button
+            className="form-genre-label-select"
+            onClick={onClickSelectToggle}
+            type="button"
           >
-            <input
-              checked={formGenreValue && formGenreValue.Crime}
-              type="checkbox"
-              id="form-genre-crime"
-              name="Crime"
-              className="form-genre-crime-input"
-              onChange={(e) => clickChecked(e)}
-            />
-            Crime
-          </label>
-          <label
-            htmlFor="Documentary"
-            className="form-genre-documentary-label"
+            Select genre
+          </button>
+          <div
+            className={formGenreInputBoxClassName}
           >
-            <input
-              checked={formGenreValue && formGenreValue.Documentary}
-              type="checkbox"
-              id="form-genre-documentary"
-              name="Documentary"
+            <label
+              htmlFor="Crime"
+              className="form-genre-crime-label"
+            >
+              <input
+                checked={formGenreValue && formGenreValue.Crime}
+                type="checkbox"
+                id="form-genre-crime"
+                name="Crime"
+                className="form-genre-crime-input"
+                onChange={(e) => clickChecked(e)}
+              />
+              Crime
+            </label>
+            <label
+              htmlFor="Documentary"
               className="form-genre-documentary-label"
-              onChange={(e) => clickChecked(e)}
-            />
-            Documentary
-          </label>
-          <label
-            htmlFor="Horror"
-            className="form-genre-horror-label"
-          >
-            <input
-              checked={formGenreValue && formGenreValue.Horror}
-              type="checkbox"
-              id="form-genre-horror"
-              name="Horror"
-              className="form-genre-horror-input"
-              onChange={(e) => clickChecked(e)}
-            />
-            Horror
-          </label>
-          <label
-            htmlFor="Comedy"
-            className="form-genre-comedy-label"
-          >
-            <input
-              checked={formGenreValue && formGenreValue.Comedy}
-              type="checkbox"
-              id="form-genre-comedy"
-              name="Comedy"
+            >
+              <input
+                checked={formGenreValue && formGenreValue.Documentary}
+                type="checkbox"
+                id="form-genre-documentary"
+                name="Documentary"
+                className="form-genre-documentary-label"
+                onChange={(e) => clickChecked(e)}
+              />
+              Documentary
+            </label>
+            <label
+              htmlFor="Horror"
+              className="form-genre-horror-label"
+            >
+              <input
+                checked={formGenreValue && formGenreValue.Horror}
+                type="checkbox"
+                id="form-genre-horror"
+                name="Horror"
+                className="form-genre-horror-input"
+                onChange={(e) => clickChecked(e)}
+              />
+              Horror
+            </label>
+            <label
+              htmlFor="Comedy"
               className="form-genre-comedy-label"
-              onChange={(e) => clickChecked(e)}
-            />
-            Comedy
-          </label>
+            >
+              <input
+                checked={formGenreValue && formGenreValue.Comedy}
+                type="checkbox"
+                id="form-genre-comedy"
+                name="Comedy"
+                className="form-genre-comedy-label"
+                onChange={(e) => clickChecked(e)}
+              />
+              Comedy
+            </label>
+          </div>
         </div>
-      </div>
-      <label htmlFor="form-overview">
-        OVERVIEW
-        <input
-          id="form-overview"
-          name="form-overview"
-          type="text"
-          className="item-add-form-input"
-          placeholder="Overview here"
-          value={formOverviewValue}
-          onChange={(e) => setFormOverviewValue(e.target.value)}
-        />
-      </label>
-      <label htmlFor="form-runtime">
-        RUNTIME
-        <input
-          id="form-runtime"
-          name="form-runtime"
-          type="text"
-          className="item-add-form-input"
-          placeholder="Runtime here"
-          value={formRuntimeValue}
-          onChange={(e) => setFormRuntimeValue(e.target.value)}
-        />
-      </label>
-      <div className="form-double-buttons">
-        <ButtonClose
-          options={
-            {
-              type: 'buttonActionRevert',
-              text: 'RESET',
-              onClickFunc: onClickReset,
+        <label htmlFor="form-overview">
+          OVERVIEW
+          <input
+            id="form-overview"
+            name="form-overview"
+            type="text"
+            className="item-add-form-input"
+            placeholder="Overview here"
+            value={formOverviewValue}
+            onChange={(e) => setFormOverviewValue(e.target.value)}
+          />
+        </label>
+        <label htmlFor="form-runtime">
+          RUNTIME
+          <input
+            id="form-runtime"
+            name="form-runtime"
+            type="text"
+            className="item-add-form-input"
+            placeholder="Runtime here"
+            value={formRuntimeValue}
+            onChange={(e) => setFormRuntimeValue(e.target.value)}
+          />
+        </label>
+        <div className="form-double-buttons">
+          <ButtonClose
+            options={
+              {
+                classType: 'buttonActionRevert',
+                text: 'RESET',
+                onClickFunc: onClickReset,
+              }
             }
-          }
-        />
-        <ButtonClose
-          options={
-            {
-              type: 'buttonActionDefault',
-              text: 'SUBMIT',
-              onClickFunc: onClickSubmit,
+          />
+          <ButtonClose
+            options={
+              {
+                classType: 'buttonActionDefault',
+                text: 'SUBMIT',
+                type: 'submit',
+              }
             }
-          }
-        />
-      </div>
-    </form>
+          />
+        </div>
+      </Form>
+    </Formik>
   );
 };
 

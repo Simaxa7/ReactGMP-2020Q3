@@ -1,17 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import buttonType from './button-config.json';
+import buttonStyleType from './button-config.json';
 import './button-close.css';
 
 const ButtonClose = (props) => {
-  const { type, text, onClickFunc } = props.options;
+  const {
+    classType,
+    type,
+    text,
+    onClickFunc,
+  } = props.options;
 
   return (
     <button
-      className={`${buttonType[type]}`}
+      className={`${buttonStyleType[classType]}`}
       onClick={onClickFunc}
-      type="button"
+      // eslint-disable-next-line
+      type={type ? type : 'button'}
     >
       {text}
     </button>
@@ -20,9 +26,10 @@ const ButtonClose = (props) => {
 
 ButtonClose.propTypes = {
   options: PropTypes.shape({
-    type: PropTypes.string.isRequired,
+    classType: PropTypes.string.isRequired,
+    type: PropTypes.string,
     text: PropTypes.string.isRequired,
-    onClickFunc: PropTypes.instanceOf(Function).isRequired,
+    onClickFunc: PropTypes.instanceOf(Function),
   }),
 };
 

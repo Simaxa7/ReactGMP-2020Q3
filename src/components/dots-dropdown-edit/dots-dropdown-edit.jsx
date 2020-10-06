@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './dots-dropdown-edit.css';
-import FormItem from '../form-item';
+import FormItem from '../form-item1';
 import ButtonClose from '../button-close';
 
 const DotsDropdownEdit = (props) => {
@@ -30,7 +30,7 @@ const DotsDropdownEdit = (props) => {
               <ButtonClose
                 options={
                   {
-                    type: 'buttonCloseDefault',
+                    classType: 'buttonCloseDefault',
                     text: '',
                     onClickFunc: onHideModal,
                   }
