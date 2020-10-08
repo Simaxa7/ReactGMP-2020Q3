@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import './form-item-select.css';
+import createInitialChecked from '../../helpers/initialChecked';
+import genreListRender from '../../helpers/genreListRender';
 
 const FormItemSelect = (props) => {
-  console.log('props', props);
   const [showSelectOption, setShowSelectOption] = useState(false);
   const onClickSelectToggle = () => setShowSelectOption(!showSelectOption);
 
   const formGenreInputBoxClassName = `form-genre-input-box ${
     showSelectOption ? '' : 'invisible'}`;
 
-  const genreList = [
-    { type: 'documentary' },
-    { type: 'comedy' },
-    { type: 'horror' },
-    { type: 'crime' },
-  ];
+  const initialChecked = createInitialChecked(props.genres);
+
   return (
     <div
       className="form-genre"
@@ -31,29 +29,29 @@ const FormItemSelect = (props) => {
       <div
         className={formGenreInputBoxClassName}
       >
-        {genreList.map((genre) => (
+        {genreListRender.map((genre) => (
           <label
             htmlFor={genre.type}
-            className={`form-genre-${genre.type}-label`}
-            key={genre.type}
+            className={`form-genre-${genre}-label`}
+            key={genre}
           >
             <input
-              // checked={
-              //   checkedSelectors
-              //   && checkedSelectors[genre.type]
-              // }
-              // onChange={(e) => props.onChangeCheckedSelectors(e)}
+              defaultChecked={initialChecked[genre]}
               type="checkbox"
-              id={`form-genre-${genre.type}`}
-              name={genre.type}
-              className={`form-genre-${genre.type}-input`}
+              id={`form-genre-${genre}`}
+              name={genre}
+              className={`form-genre-${genre}-input`}
             />
-            { genre.type }
+            { genre }
           </label>
         ))}
       </div>
     </div>
   );
+};
+
+FormItemSelect.propTypes = {
+  genres: PropTypes.arrayOf(Array).isRequired,
 };
 
 export default FormItemSelect;

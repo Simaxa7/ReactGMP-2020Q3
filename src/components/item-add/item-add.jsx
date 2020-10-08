@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import './item-add.css';
 import ButtonClose from '../button-close';
-import FormItem from '../form-item1';
+import FormItem from '../form-item';
 
 // eslint-disable-next-line
 
