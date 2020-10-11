@@ -38,7 +38,7 @@ const DotsDropdownMenu = (props) => {
       <ButtonClose
         options={
           {
-            type: 'buttonCloseSmall',
+            classType: 'buttonCloseSmall',
             text: '',
             onClickFunc: onHideDotsDropdownMenu,
           }

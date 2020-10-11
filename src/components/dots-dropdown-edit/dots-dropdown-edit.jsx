@@ -30,7 +30,7 @@ const DotsDropdownEdit = (props) => {
               <ButtonClose
                 options={
                   {
-                    type: 'buttonCloseDefault',
+                    classType: 'buttonCloseDefault',
                     text: '',
                     onClickFunc: onHideModal,
                   }

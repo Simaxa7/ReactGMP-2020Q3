@@ -43,7 +43,7 @@ const DotsDropdownDelete = (props) => {
               <ButtonClose
                 options={
                   {
-                    type: 'buttonCloseDefault',
+                    classType: 'buttonCloseDefault',
                     text: '',
                     onClickFunc: onHideModalDelete,
                   }
@@ -52,7 +52,7 @@ const DotsDropdownDelete = (props) => {
               <ButtonClose
                 options={
                   {
-                    type: 'buttonActionDefault',
+                    classType: 'buttonActionDefault',
                     text: 'CONFIRM',
                     onClickFunc: onHideModalDeleteAndDel,
                   }

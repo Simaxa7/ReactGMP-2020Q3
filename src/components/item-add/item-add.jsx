@@ -5,21 +5,6 @@ import ButtonClose from '../button-close';
 import FormItem from '../form-item';
 
 // eslint-disable-next-line
-const mockItem = {
-  budget: 20000000,
-  genres: ['Comedy', 'Documentary', 'Action'],
-  id: 16290,
-  overview: 'Jackass 3D is a 3-D film and the third movie of the Jackass serie',
-  poster_path:
-    'https://image.tmdb.org/t/p/w500/5j9VFEVjYn0FtqZGqDcmMPYSVoY.jpg',
-  release_date: '2010-10-15',
-  revenue: 117224271,
-  runtime: 94,
-  tagline: 'Dont try this at home',
-  title: 'Jackass 3D',
-  vote_average: 6.4,
-  vote_count: 509,
-};
 
 const ItemAdd = () => {
   const [modalAdd, setModalAdd] = useState(false);
@@ -52,7 +37,7 @@ const ItemAdd = () => {
               <ButtonClose
                 options={
                   {
-                    type: 'buttonCloseDefault',
+                    classType: 'buttonCloseDefault',
                     text: '',
                     onClickFunc: onHideModal,
                   }

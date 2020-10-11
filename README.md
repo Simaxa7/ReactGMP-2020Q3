@@ -7,3 +7,4 @@
     Task 4 - Look at the task number 3(second part)
     Task 5 - Hooks
     Task 6 - REDUX
+    Task 7 - Formik
