@@ -6,13 +6,14 @@ import createInitialChecked from '../../helpers/initialChecked';
 import genreListRender from '../../helpers/genreListRender';
 
 const FormItemSelect = (props) => {
+  const { genres } = props;
   const [showSelectOption, setShowSelectOption] = useState(false);
   const onClickSelectToggle = () => setShowSelectOption(!showSelectOption);
 
   const formGenreInputBoxClassName = `form-genre-input-box ${
     showSelectOption ? '' : 'invisible'}`;
 
-  const initialChecked = createInitialChecked(props.genres);
+  const initialChecked = createInitialChecked(genres);
 
   return (
     <div
@@ -31,7 +32,7 @@ const FormItemSelect = (props) => {
       >
         {genreListRender.map((genre) => (
           <label
-            htmlFor={genre.type}
+            htmlFor={genre}
             className={`form-genre-${genre}-label`}
             key={genre}
           >
