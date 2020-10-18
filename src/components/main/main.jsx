@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+
 import MoviesCardList from '../movies-card-list';
 import FilmGenre from '../film-genre';
 import SelectGenre from '../select-genre';
@@ -51,4 +53,4 @@ Main.propTypes = {
   onShowMovieDetails: PropTypes.instanceOf(Function).isRequired,
 };
 
-export default Main;
+export default withRouter(Main);

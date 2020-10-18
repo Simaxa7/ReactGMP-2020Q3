@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 
 import './movies-card-list.css';
 import MoviesCardListItem from '../movies-card-list-item';
@@ -8,6 +9,7 @@ import { deleteItem } from '../../redux/actions/actionsGenre';
 
 const MoviesCardList = () => {
   const { qOptions } = useSelector((state) => state);
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
@@ -37,12 +39,18 @@ const MoviesCardList = () => {
       id, title, genres, posterPath, release,
     } = el;
     const movieData = currentData.data.filter((elem) => elem.id === id)[0];
+
+    const onClickItem = () => {
+      history.push(`/film/${id}`);
+      dispatch(setItemActive({ id, data: movieData }));
+    };
+
     return (
       <div
         key={id}
         className="movies-card-list-item "
-        onClick={() => dispatch(setItemActive({ id, data: movieData }))}
-        onKeyDown={() => dispatch(setItemActive({ id, data: movieData }))}
+        onClick={onClickItem}
+        onKeyDown={onClickItem}
         tabIndex={0}
         role="button"
       >
