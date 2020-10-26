@@ -14,7 +14,6 @@ const TopOfHead = (props) => {
 
   const {
     onChangeItem,
-    movieData,
     onSetSearchValue,
     searchValue,
   } = props;
@@ -53,14 +52,13 @@ const TopOfHead = (props) => {
             />
           </div>
         )
-        : <MovieDetails movieData={movieData} />}
+        : <MovieDetails />}
     </div>
   );
 };
 
 TopOfHead.propTypes = {
   onChangeItem: PropTypes.instanceOf(Function).isRequired,
-  movieData: PropTypes.instanceOf(Object).isRequired,
   onSetSearchValue: PropTypes.instanceOf(Function).isRequired,
   searchValue: PropTypes.string.isRequired,
 };

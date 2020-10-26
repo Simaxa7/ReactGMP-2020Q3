@@ -3,13 +3,19 @@ import React, {
   useEffect,
   useCallback,
 } from 'react';
-
 import { useSelector } from 'react-redux';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
+
 import './app.css';
 import TopOfHead from '../top-of-head';
 import Main from '../main';
 import Footer from '../footer';
 import useDebounce from '../../hooks/useDebounce';
+import Page404 from '../../pages/Page_404';
 
 const App = () => {
   const { genreSort } = useSelector((state) => state.genre);
@@ -80,12 +86,27 @@ const App = () => {
         onSetSearchValue={onSetSearchValue}
         searchValue={searchValue}
       />
-      <Main
-        count={count}
-        moviesData={genreSort.data}
-        onDeleteItem={deleteItem}
-        onShowMovieDetails={onShowMovieDetails}
-      />
+      <Router>
+        <Switch>
+          <Route path="/" exact>
+            <Main
+              count={count}
+              moviesData={genreSort.data}
+              onDeleteItem={deleteItem}
+              onShowMovieDetails={onShowMovieDetails}
+            />
+          </Route>
+          <Route path="/film/:id">
+            <Main
+              count={count}
+              moviesData={genreSort.data}
+              onDeleteItem={deleteItem}
+              onShowMovieDetails={onShowMovieDetails}
+            />
+          </Route>
+          <Route component={Page404} />
+        </Switch>
+      </Router>
       <Footer />
     </div>
   );

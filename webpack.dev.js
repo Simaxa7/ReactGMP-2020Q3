@@ -62,6 +62,7 @@ module.exports = merge(common, {
     new CleanWebpackPlugin(),
   ],
   devServer: {
-    port: 8080
+    port: 8080,
+    historyApiFallback: true
   },
 });

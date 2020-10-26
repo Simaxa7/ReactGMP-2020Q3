@@ -5,6 +5,7 @@ const initDel = { method: 'DELETE' };
 
 export const filmGenreAll = () => async (dispatch) => {
   dispatch({ type: 'SET_QUERRY_GENRE', payload: 'All' });
+
   const res = await fetch(`${baseUrl}`, initGet);
   const body = await res.json();
   dispatch({ type: 'FILM_GENRE_ALL', payload: body });
