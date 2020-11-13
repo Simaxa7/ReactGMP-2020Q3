@@ -10,6 +10,7 @@ const mockData = [
   {release_date: "2018-01-06", vote_average: 6.1},
   {release_date: "2020-03-08", vote_average: 8.3},
 ];
+const mockTypeAll = 'FILM_GENRE_ALL';
 const mockTypeDocumentary = 'FILM_GENRE_DOCUMENTARY';
 const mockTypeComedy = 'FILM_GENRE_COMEDY';
 const mockTypeHorror = 'FILM_GENRE_HORROR';
@@ -57,7 +58,7 @@ describe('it 3 Documentary', () => {
 });
 
 describe('it 4 Horror', () => {
-  it('it3', () => {
+  it('it4', () => {
     const res = JSON.stringify(
       reducer({} , {
         type: mockTypeHorror,
@@ -74,7 +75,7 @@ describe('it 4 Horror', () => {
 });
 
 describe('it 5 Crime', () => {
-  it('it3', () => {
+  it('it5', () => {
     const res = JSON.stringify(
       reducer({} , {
         type: mockTypeCrime,
@@ -84,6 +85,23 @@ describe('it 5 Crime', () => {
       .toEqual(JSON.stringify(
         Object.assign(
           { genreType: mockTypeCrime },
+          { genreSort: mockData }
+        ))
+      );
+  });
+});
+
+describe('it 5 All', () => {
+  it('it5', () => {
+    const res = JSON.stringify(
+      reducer({} , {
+        type: mockTypeAll,
+        payload: mockData
+      }));
+    expect(res)
+      .toEqual(JSON.stringify(
+        Object.assign(
+          { genreType: mockTypeAll },
           { genreSort: mockData }
         ))
       );
