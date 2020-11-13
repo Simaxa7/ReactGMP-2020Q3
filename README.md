@@ -9,3 +9,5 @@
     Task 6 - REDUX
     Task 7 - Formik
     Task 8 - Routing 
+    Task 10 - SSR
+     
