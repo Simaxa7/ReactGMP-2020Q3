@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1 1`] = `
+<button
+  className="button-close-default button-close"
+  type="button"
+>
+  close
+</button>
+`;
+
+exports[`renders correctly 2 1`] = `
+<button
+  className="button-action-default button-action"
+  type="button"
+>
+  action
+</button>
+`;
